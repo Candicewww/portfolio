@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { SVGAttributes } from "react";
 
 const metrics = [
@@ -56,6 +56,8 @@ function RadarTooltip({
 export default function SkillRadar() {
   const [mounted] = useState(() => typeof window !== "undefined");
   const [activeSubject, setActiveSubject] = useState<string | null>(null);
+  const chartWrapperRef = useRef<HTMLDivElement | null>(null);
+  const [chartBox, setChartBox] = useState({ width: 0, height: 0 });
 
   const chartData = useMemo(() => {
     return metrics.map((m) => ({
@@ -67,6 +69,25 @@ export default function SkillRadar() {
   const activeIndex = activeSubject
     ? chartData.findIndex((d) => d.subject === activeSubject)
     : -1;
+  const activeAngle = activeIndex >= 0 ? (activeIndex * 360) / chartData.length - 90 : null;
+  const activeScore = activeIndex >= 0 ? chartData[activeIndex]?.score ?? 0 : 0;
+  const scoreDomainMax = 9.5;
+  // Keep line length in chart coordinates so it never extends beyond active radar dot.
+  const estimatedInnerDiameter = Math.max(0, Math.min(chartBox.width, chartBox.height) - 50);
+  const maxRadiusPx = (estimatedInnerDiameter / 2) * 0.92;
+  const activeLineLengthPx = maxRadiusPx * (activeScore / scoreDomainMax);
+
+  useEffect(() => {
+    const el = chartWrapperRef.current;
+    if (!el) return;
+    const update = () => {
+      setChartBox({ width: el.clientWidth, height: el.clientHeight });
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const renderAngleTick = (props: {
     payload?: { value?: string };
@@ -132,11 +153,12 @@ export default function SkillRadar() {
             </div>
           ) : (
             <motion.div
+              ref={chartWrapperRef}
               initial={{ scale: 0.96, opacity: 0.5 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] as const }}
-              className="h-full"
+              className="relative h-full"
             >
               <ResponsiveContainer width="100%" height="100%">
                 <RechartsRadarChart
@@ -163,16 +185,6 @@ export default function SkillRadar() {
                     strokeWidth={0.8}
                     radialLines={false}
                   />
-                  {activeIndex >= 0 ? (
-                    <PolarGrid
-                      stroke="#333333"
-                      strokeOpacity={0.22}
-                      strokeWidth={1.15}
-                      radialLines
-                      polarAngles={[(activeIndex * 360) / chartData.length]}
-                      polarRadius={[]}
-                    />
-                  ) : null}
                   <PolarRadiusAxis
                     domain={[0, 9.5]}
                     tick={false}
@@ -217,6 +229,17 @@ export default function SkillRadar() {
                   />
                 </RechartsRadarChart>
               </ResponsiveContainer>
+              {activeAngle != null ? (
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute left-1/2 top-1/2 h-px bg-[#333333]/25 transition-transform duration-150"
+                  style={{
+                    width: `${Math.max(0, activeLineLengthPx)}px`,
+                    transformOrigin: "left center",
+                    transform: `translateY(-50%) rotate(${activeAngle}deg)`,
+                  }}
+                />
+              ) : null}
             </motion.div>
           )}
         </div>

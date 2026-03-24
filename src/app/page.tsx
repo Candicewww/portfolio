@@ -52,7 +52,8 @@ const workScenes = [
 
 const aiProjects = [
   {
-    title: "Cross-Cultural Context Polisher 职场英语润色工具",
+    title: "Cross-Cultural Context Polisher",
+    titleZh: "职场英语润色工具",
     scenario: "职场英文沟通中，希望快速用AI润色英文表达。",
   },
   {
@@ -196,8 +197,8 @@ function WorkParallaxStack() {
                     isExpanded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2",
                   ].join(" ")}
                 >
-                  <div className="font-serif text-base leading-tight tracking-tight text-[#333333]">
-                    {scene.caption}
+                  <div className="text-[11px] text-[#333333]/70">
+                    {scene.role}
                   </div>
                 </div>
 
@@ -338,9 +339,20 @@ function AILabSection() {
               <div className="inline-flex items-center rounded-full border border-[#333333]/15 bg-white/45 px-3 py-1 text-xs text-[#333333]/75">
                 Project {idx + 1}
               </div>
-              <h3 className="mt-4 font-serif text-xl leading-tight tracking-tight font-medium">
-                {project.title}
-              </h3>
+              {project.titleZh ? (
+                <h3 className="mt-4 leading-tight tracking-tight">
+                  <span className="block font-serif text-xl font-medium text-[#333333]">
+                    {project.title}
+                  </span>
+                  <span className="mt-1 block text-base font-normal text-[#333333]/85">
+                    {project.titleZh}
+                  </span>
+                </h3>
+              ) : (
+                <h3 className="mt-4 font-serif text-xl leading-tight tracking-tight font-medium">
+                  {project.title}
+                </h3>
+              )}
               <p className="mt-4 text-sm font-normal leading-relaxed text-[#333333]/80">
                 需求场景：{project.scenario}
               </p>
@@ -460,7 +472,7 @@ export default function Home() {
 
                 <div className="mt-5 text-center">
                   <div className="font-serif text-2xl tracking-tight">
-                    &gt;&gt; Candice Wong
+                    Candice Wong
                   </div>
                   <div className="mt-1 text-xs text-[#333333]/70">
                     Global Growth · AdTech Strategy · AI Crafting

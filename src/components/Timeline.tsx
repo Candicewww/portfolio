@@ -19,7 +19,7 @@ const stops: CareerStop[] = [
     roleType: "Full-time",
     role: "SMB Seller incubation",
     summary:
-      "体验了和大厂不同的做事风格。不论是亚马逊还是TikTok，有相同的业务困境：最好“讲故事”的SMB，最难做。如何用最少的人力撬动最大的增长？我认为落脚点在：如何使用自动化工具实现行业经验的规模化复制。",
+      "不论是亚马逊还是TikTok，都有着类似的业务难题。最有增长想象空间的SMB客群，该如何用最少的人力撬动最大的增长？我认为趋势在于自动化工具实现行业经验的规模化复制。",
   },
   {
     company: "AliExpress | 阿里巴巴·速卖通",
@@ -66,7 +66,7 @@ const stops: CareerStop[] = [
     roleType: "Internship",
     role: "Short-video Content Growth",
     summary:
-      "第一段大厂实习，从做内容起步。体验上了随时点开app都是”99+“的快感。",
+      "第一段大厂实习，从做内容起步。0-1做了合计75W+粉丝的账号，体验上了随时点开app都是”99+“的快乐。",
   },
 ];
 

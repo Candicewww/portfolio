@@ -14,6 +14,13 @@ type Reflection = {
 
 const reflections: Reflection[] = [
   {
+    title: "我的职业愿景：Global talent",
+    excerpt:
+      "我倾向于把自己定义为一个持续进化的全球化人才。在未来的 3-5 年里，“AI（提效）+ 内容（叙事）+ 出海（领域）”将是我职业版图的三个关键词。在这个不确定的时代，这是我为自己选定的确定性。",
+    date: "2025.12",
+    tag: "Personal",
+  },
+  {
     title: "大厂是路径，而非终点。",
     excerpt:
       "我始终提醒自己，真正的职业自由不是title的堆砌。而是在任何业务场景下，发现、整合、创造和规模化的能力",
@@ -33,13 +40,6 @@ const reflections: Reflection[] = [
       "出海的蛮荒时代早已过去，靠信息差躺赢的逻辑不再成立。未来的增长引擎，我押注在内容（content）",
     date: "2026.01",
     tag: "Strategy",
-  },
-  {
-    title: "我的职业愿景：Global talent",
-    excerpt:
-      "我倾向于把自己定义为一个持续进化的全球化人才。在未来的 3-5 年里，“AI（提效）+ 内容（叙事）+ 出海（领域）”将是我职业版图的三个关键词。在这个不确定的时代，这是我为自己选定的确定性。",
-    date: "2025.12",
-    tag: "Personal",
   },
 ];
 
