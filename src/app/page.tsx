@@ -54,13 +54,11 @@ const aiProjects = [
   {
     title: "Cross-Cultural Context Polisher 职场英语润色工具",
     scenario: "职场英文沟通中，希望快速用AI润色英文表达。",
-    linkText: "link：（后面增加）",
   },
   {
     title: "Amazon Ad tool kit (in dev)",
     scenario:
       "一个可以帮助亚马逊卖家从0开始搭建广告的工具包：优化商品LIsting，搭建关键词库，设计广告结构，分析广告数据",
-    linkText: "link：开发中",
   },
 ];
 
@@ -98,10 +96,7 @@ function WorkParallaxStack() {
 
   return (
     <div
-      className={[
-        "relative mx-auto w-full max-w-3xl rounded-[2rem] transition-all duration-200",
-        !isMobile && expanded ? "bg-[#333333]/[0.02] ring-1 ring-[#333333]/10" : "",
-      ].join(" ")}
+      className="relative mx-auto w-full max-w-3xl"
       onMouseEnter={() => {
         if (!isMobile) setExpanded(true);
       }}
@@ -201,8 +196,7 @@ function WorkParallaxStack() {
                     isExpanded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2",
                   ].join(" ")}
                 >
-                  <div className="text-[11px] text-[#333333]/70">{scene.role}</div>
-                  <div className="mt-1 font-serif text-base leading-tight tracking-tight text-[#333333]">
+                  <div className="font-serif text-base leading-tight tracking-tight text-[#333333]">
                     {scene.caption}
                   </div>
                 </div>
@@ -350,9 +344,6 @@ function AILabSection() {
               <p className="mt-4 text-sm font-normal leading-relaxed text-[#333333]/80">
                 需求场景：{project.scenario}
               </p>
-              <div className="mt-5 text-sm font-medium text-[#333333]">
-                {project.linkText}
-              </div>
             </motion.article>
           ))}
           </div>
@@ -455,7 +446,7 @@ export default function Home() {
                   <div className="relative h-[190px] w-[190px] overflow-hidden rounded-full border border-[#333333]/15 bg-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.08)] backdrop-blur">
                     <Image
                       src="/images/headshot.png"
-                      alt="Candice Wang portrait"
+                      alt="Candice Wong portrait"
                       fill
                       priority
                       className="object-cover"
@@ -469,7 +460,7 @@ export default function Home() {
 
                 <div className="mt-5 text-center">
                   <div className="font-serif text-2xl tracking-tight">
-                    Candice Wang
+                    &gt;&gt; Candice Wong
                   </div>
                   <div className="mt-1 text-xs text-[#333333]/70">
                     Global Growth · AdTech Strategy · AI Crafting
